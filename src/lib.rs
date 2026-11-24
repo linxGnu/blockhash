@@ -486,7 +486,8 @@ pub fn blockhash1024<I: Image>(img: &I) -> Blockhash1024 {
 ///
 /// See [`blockhash1024`].
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq, PartialOrd, Ord)]
-pub struct Blockhash1024([u8; 128]);
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub struct Blockhash1024(#[cfg_attr(feature = "serde", serde(with = "serde_bytes"))] [u8; 128]);
 
 impl Blockhash1024 {
     /// Returns the Hamming distance between two hashes.
