@@ -539,6 +539,7 @@ impl Blockhash1024 {
     /// ]);
     ///
     /// assert_eq!(a.distance(&b), 44);
+    /// assert_eq!(a.count_ones(), 768);
     /// ```
     #[inline]
     #[must_use]
