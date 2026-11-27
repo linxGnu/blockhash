@@ -54,6 +54,10 @@ fn distance<const SIZE: usize>(left: &[u8; SIZE], right: &[u8; SIZE]) -> u32 {
     dist
 }
 
+fn count_ones<const SIZE: usize>(target: &[u8; SIZE]) -> u32 {
+    target.iter().map(|u| u.count_ones()).sum()
+}
+
 fn parse_char(c: u8) -> Result<u8, BlockhashParseError> {
     let val = match c {
         b'0'..=b'9' => c - b'0',
@@ -540,6 +544,13 @@ impl Blockhash1024 {
     #[must_use]
     pub fn distance(&self, other: &Self) -> u32 {
         distance(&self.0, &other.0)
+    }
+
+    /// Returns the number of 1 bits.
+    #[inline]
+    #[must_use]
+    pub fn count_ones(&self) -> u32 {
+        count_ones(&self.0)
     }
 }
 
